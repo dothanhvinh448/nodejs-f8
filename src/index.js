@@ -1,26 +1,29 @@
-const path=require('path')
-const express = require('express')
-const handlebars=require('express-handlebars')
+const path=require('path');
+const express = require('express');
+const handlebars=require('express-handlebars');
 // import { engine } from 'express-handlebars';
-const app = express()
+const app = express();
 //http logger
-const morgan =require('morgan')
+const morgan =require('morgan');
 const port = 3000
 
-const route=require('./routes')
-app.use(express.static(path.join(__dirname,'public')))
+const route=require('./routes');
+const db=require('./config/db');
+//Connect db
+db.connect();
+app.use(express.static(path.join(__dirname,'public')));
 // app.use(morgan('combined'))
 //template engine
 app.engine('hbs',handlebars.engine({extname:'.hbs'}));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/view'));
-console.log("name",path.join(__dirname, 'resources/view'))
+app.set('views', path.join(__dirname, 'resources','view'));
+console.log("name",path.join(__dirname, 'resources','view'));
 // routes init
 route(app);
 
 
 
-app.listen(port,()=>{console.log(`app listening http://localhost:${port}`)})
+app.listen(port,()=>{console.log(`app listening http://localhost:${port}`)});
 
 
 

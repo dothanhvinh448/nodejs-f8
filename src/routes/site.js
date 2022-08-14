@@ -3,7 +3,7 @@ var router=express.Router()
 
 const sitetController=require('../app/controllers/SiteController')
 
-router.use('/search',sitetController.search)
-router.use('/',sitetController.index)
+router.get('/search',sitetController.search)
+router.get('/',sitetController.index)
 
 module.exports=router

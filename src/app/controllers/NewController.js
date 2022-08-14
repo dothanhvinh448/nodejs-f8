@@ -1,6 +1,6 @@
 
 class NewController{
-    //[get]/news
+    //[get]/news function callback
     index(req,res){
         res.render('news')
     }
